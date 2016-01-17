@@ -9,6 +9,7 @@ public class DInGameScore : MonoBehaviour {
     [SerializeField]
     private int scoreRate; // 거리당 점수
     private int score;
+    private int coin;
 
 
 
@@ -31,6 +32,11 @@ public class DInGameScore : MonoBehaviour {
     public void UpScore(int _score)
     {
         score += _score;
+    }
+
+    public void UpCoin(int _coin) // 코인의 숫자를 늘려 줌니다.
+    {
+        coin += _coin;
     }
 
     public int GetTotalScore()
