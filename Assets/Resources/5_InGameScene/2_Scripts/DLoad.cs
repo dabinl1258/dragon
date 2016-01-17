@@ -11,6 +11,12 @@ public  class DObjectPool
     public DObjectPool(GameObject _type)
     {
         type = _type;
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject temp = MonoBehaviour.Instantiate(type) as GameObject;
+            pool.Add(temp);
+            temp.SetActive(false);
+        }
     }
 
     public GameObject GetAble()// 사용가능한 오브젝트
@@ -54,7 +60,7 @@ public class DLoad : MonoBehaviour {
 
 
     private float[] savePos = new float[]{
-        15 , 30 ,40 , 80 , 120 
+        15 , 30 ,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40 , 80 , 120 
         ,122 , 124 , 126 ,128, 130
     };
 
@@ -62,7 +68,8 @@ public class DLoad : MonoBehaviour {
     {
         0,0,0,0,0,
         0,0,0,0,0,
-        0,0
+        0,0,0,0,0,0,0,0,0,0,0
+        ,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
 
     private DObjectPool[] monsterPool;
@@ -78,11 +85,16 @@ public class DLoad : MonoBehaviour {
         {
             monsterPool[i] = new DObjectPool(monster[i]);
         }
+        
             create_able = NextIndex();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if(playerPosition == null)
+        {
+             playerPosition = GameObject.Find("players").transform;
+        }
         CheckCreate();
 	}
 
@@ -103,8 +115,6 @@ public class DLoad : MonoBehaviour {
     {
         GameObject temp = monsterPool[saveMonster[index]].GetAble();
         temp.SendMessage("Create_Object", new Vector3(index_data, 0));
-        Debug.Log("createPos : " + playerPosition.position.x + compensate);
-        Debug.Log("monster : " + temp.transform.position.x);
     }
 
     void CheckCreate()// 생성 가능 한지 확인 

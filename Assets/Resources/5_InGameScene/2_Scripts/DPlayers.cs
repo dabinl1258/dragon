@@ -7,7 +7,7 @@ public class DPlayers : MonoBehaviour
     #region Physics Variable
 
     private Vector3 pos; // 목표 위치
-    public Camera cam = null;
+    private Camera cam = null;
     public float lerpSpeed; // 이동속도
     public float stopGravityConst = 0.3f;// 중력이 멈추는 범위
 
@@ -22,13 +22,10 @@ public class DPlayers : MonoBehaviour
 
     #region Variable
 
-    public DSmoothCamera smoothCamera = null;
     public Animator animator = null;
     public string deadScene;
     public static DPlayers instance = null;
 
-    [SerializeField]
-    private float  energy = 100.0f;
 
     public GameObject audioListener= null;
     public AudioClip audioClip = null;
@@ -43,10 +40,28 @@ public class DPlayers : MonoBehaviour
    
     #endregion
 
+    #region state Valiable
+    [SerializeField]
+    private float energy = 100.0f;
+
+    private bool hyperAble = false;
+    public GameObject hyperEffect = null;
+    #endregion
+
+    #region HyperValiable
+    public float hyperSpeed = 10.0f;
+    public float hyperVerticalSpeed = 1.0f;
+    public float hyperVerticalRange = 1.0f;
+    #endregion
+
     #region Virtual Function
     // Use this for initialization
     void Start()
     {
+
+        hyperEffect.SetActive(hyperAble);
+        cam = GameObject.Find("3DGameCamera").camera;
+        audioListener = GameObject.Find("audio");
         Time.timeScale = 1.0f;
         instance = this;
         screenCal = new Vector3(Screen.width / 2, Screen.height / 2);
@@ -97,9 +112,10 @@ public class DPlayers : MonoBehaviour
     #region Custom Update
     private void DragonUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || hyperAble)
         {
-            if (transform.position.x < 0.0f)
+            rigidbody2D.velocity = Vector2.zero;
+            if (transform.position.x < 0.0f && !hyperAble)
                 return;
             pos = transform.position;
             Fly();
@@ -112,6 +128,11 @@ public class DPlayers : MonoBehaviour
     {
         rigidbody2D.velocity = new Vector2(dragonSpeed, 0);
         rigidbody2D.gravityScale = 0.0f;
+    }
+    private void HyperFixedUpdate()
+    {
+        transform.position = new Vector3(transform.position.x + Time.deltaTime * hyperSpeed, Mathf.Sin(Time.time * hyperVerticalSpeed) * hyperVerticalRange, 0);
+
     }
 
     private void GameUpdate()
@@ -126,6 +147,11 @@ public class DPlayers : MonoBehaviour
 
     private void GameFixedUpdate()
     {
+        if(hyperAble)
+        {
+            HyperFixedUpdate();
+            return ;
+        }
         rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
         if(flyState)
             transform.position = Vector3.Lerp(transform.position, pos, Time.unscaledDeltaTime * lerpSpeed);
@@ -135,6 +161,32 @@ public class DPlayers : MonoBehaviour
             rigidbody2D.gravityScale = 0;
         
     }
+    #endregion 
+
+    #region Hyper Function
+
+    IEnumerator HyperTimer(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        DisEnableHyper();
+    }
+
+    public void EnableHyper()
+    {
+        rigidbody2D.gravityScale = 0.0f;
+        StartCoroutine( HyperTimer(DPlayerData.instance.itemTimeRate * 8.0f));
+        hyperAble = true;
+        hyperEffect.SetActive(hyperAble);
+    }
+
+    private void DisEnableHyper()
+    {
+        rigidbody2D.gravityScale = gravityScale;
+        hyperAble = false;
+        hyperEffect.SetActive(hyperAble);
+        pos = transform.position;
+    }
+
     #endregion 
 
     #region Custum Function
@@ -150,7 +202,6 @@ public class DPlayers : MonoBehaviour
         if (Vector3.Distance(transform.position, pos) < stopGravityConst)
         {
             flyState = false;
-            smoothCamera.noetAble = flyState;
             transform.localEulerAngles = Vector3.zero;
         }
     }
@@ -181,9 +232,10 @@ public class DPlayers : MonoBehaviour
         //}
         
         flyState = true;
-        smoothCamera.noetAble = flyState;
         DoAnimation("Attack");
         audioListener.SendMessage("PlayAudio", audioClip);
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
     private void Dead()
     {
@@ -210,15 +262,16 @@ public class DPlayers : MonoBehaviour
 
     void TriggerWithEnemy(GameObject _enemy)
     {
-        if(flyState )
+        if (flyState) {
             _enemy.SendMessage("HitWithPlayer");
+        }
     }
     #endregion
 
     #region ChaingevalueFunction 밖에서 값을 변경하는 함수
     public void RestEnegy(float _restEnegy)
     {
-        energy -= _restEnegy;
+        energy -= _restEnegy * DPlayerData.instance.restEnergyRate;
     }
     #endregion
 
