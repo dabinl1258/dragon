@@ -30,17 +30,9 @@ public class DItem : MonoBehaviour {
         transform.position = _pos;
     }
 
-    virtual public void HitWithPlayer()
+    public virtual void HitWithPlayer()
     {
     }
-
-
-    virtual public void forceDead()
-    {
-        gameObject.SetActive(false);
-    }
-
-
     protected virtual void Miss()
     {
         gameObject.SetActive(false);

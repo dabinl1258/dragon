@@ -4,16 +4,13 @@ using System.Collections.Generic;
 using System;
 
 public class DLoad : MonoBehaviour {
-    [SerializeField]
     private Transform playerPosition = null;
    
-
     [SerializeField]
     private float compensate;
 
     [SerializeField]
     private GameObject[] monster;
-
 
     private float[] savePos = new float[]{
         15 , 30 ,40,41,42,43,44,45,46,47,48,49,50,51 , 80 , 120 

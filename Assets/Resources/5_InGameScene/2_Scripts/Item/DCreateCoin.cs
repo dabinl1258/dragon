@@ -29,6 +29,11 @@ public class DCreateCoin : MonoBehaviour {
 
     public void CreateCoin(Vector3 _createPos, int _coin)
     {
+        if(_coin >= objectPool.Length)
+        {
+            print("어레이를 늘려야 할듯" + _coin);
+            return;
+        }
         objectPool[_coin].GetAble().SendMessage("Create_Object",(_createPos + new Vector3(10.0f, 0)));
     }
 }

@@ -132,8 +132,9 @@ public class DPlayers : MonoBehaviour
     }
     private void HyperFixedUpdate()
     {
+        
         transform.position = new Vector3(transform.position.x + Time.deltaTime * hyperSpeed, Mathf.Sin(Time.time * hyperVerticalSpeed) * hyperVerticalRange, 0);
-
+        print("코드가 사용됨");
     }
 
     private void GameUpdate()
@@ -172,10 +173,10 @@ public class DPlayers : MonoBehaviour
         DisEnableHyper();
     }
 
-    public void EnableHyper()
+    public void EnableHyper(float _time = 8.0f)
     {
         rigidbody2D.gravityScale = 0.0f;
-        StartCoroutine( HyperTimer(DPlayerData.instance.itemTimeRate * 8.0f));
+        StartCoroutine( HyperTimer(DPlayerData.instance.itemTimeRate *_time));
         hyperAble = true;
         hyperEffect.SetActive(hyperAble);
     }
