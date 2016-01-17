@@ -32,9 +32,10 @@ public class DCoin : DItem
         transform.localEulerAngles += Time.deltaTime * rotateVec3;
     }
 
-    void HitWithPlayer()
+    public void HitWithPlayer()
     {
         DInGameScore.instance.UpCoin(coin);
         gameObject.SetActive(false);
+        print("hit with coin");
     }
 }

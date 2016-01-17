@@ -22,6 +22,7 @@ public class DPlayers : MonoBehaviour
 
     #region Variable
 
+    int combo = 0;
     public Animator animator = null;
     public string deadScene;
     public static DPlayers instance = null;
@@ -202,6 +203,8 @@ public class DPlayers : MonoBehaviour
         if (Vector3.Distance(transform.position, pos) < stopGravityConst)
         {
             flyState = false;
+            DInGameScore.instance.UpScore(combo * combo * 100);
+            combo = 0;
             transform.localEulerAngles = Vector3.zero;
         }
     }
@@ -272,6 +275,10 @@ public class DPlayers : MonoBehaviour
     public void RestEnegy(float _restEnegy)
     {
         energy -= _restEnegy * DPlayerData.instance.restEnergyRate;
+    }
+    public void UpCombo()
+    {
+        combo++;
     }
     #endregion
 

@@ -44,6 +44,9 @@ public class DEnemyObj : MonoBehaviour {
 
     virtual public void HitWithPlayer()
     {
+        if (!life)
+            return;
+        DPlayers.instance.UpCombo();
         realHealth -= 1;
         if (realHealth <= 0)
         {
@@ -60,6 +63,7 @@ public class DEnemyObj : MonoBehaviour {
         gameObject.SendMessage("EnableEffect");
         gameObject.SendMessage("StopAuto");
         DInGameScore.instance.UpScore(score);
+        DCreateCoin.instance.CreateCoin(transform.position, health);
      }
 
 
