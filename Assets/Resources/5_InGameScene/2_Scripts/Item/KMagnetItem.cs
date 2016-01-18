@@ -28,7 +28,7 @@ public class KMagnetItem : MonoBehaviour {
         Hero.OnMagnet();
     }
 
-    void OnTriggerEnter(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if(col.CompareTag("Player"))
         {

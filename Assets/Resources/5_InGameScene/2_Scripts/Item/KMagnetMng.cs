@@ -23,7 +23,7 @@ public class KMagnetMng : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(m_Player.getMagnet() == true)
+	    if(m_Player.getOnMagnet() == true)
         {
             if (Headpointer > 0)
             {

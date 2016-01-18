@@ -32,7 +32,7 @@ public class DPlayers : MonoBehaviour
     public AudioClip audioClip = null;
     public GameObject particle = null;
 
-    
+    public bool isMagnet = true;
 
 
     private Vector3 screenCal;
@@ -313,5 +313,20 @@ public class DPlayers : MonoBehaviour
             return 0;
     }
     #endregion 
+
+    #region ItemEffects
+
+    public bool getOnMagnet()
+    {
+        return isMagnet;
+    }
+
+    public void OnMagnet()
+    {
+        isMagnet = true;
+    }
+
+    #endregion
+
 
 }
