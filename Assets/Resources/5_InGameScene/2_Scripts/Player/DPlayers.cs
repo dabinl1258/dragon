@@ -17,7 +17,6 @@ public class DPlayers : MonoBehaviour
 
     private bool flyState = false; // 나는 경우(fly)  true아닌 경우 false
     private float gravityScale; // 중력
-
     #endregion
 
     #region Variable
@@ -59,7 +58,6 @@ public class DPlayers : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         hyperEffect.SetActive(hyperAble);
         cam = GameObject.Find("3DGameCamera").camera;
         audioListener = GameObject.Find("audio");
