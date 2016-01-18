@@ -17,7 +17,8 @@ public class DHyperFlight : MonoBehaviour {
     {
         if(coll.CompareTag("Enemy"))
         {
-            coll.gameObject.SendMessage("forceDead");
+            //coll.gameObject.SendMessage("forceDead");
+            coll.GetComponent<DEnemyObj>().HitWithPlayer();
         }
     }
 }

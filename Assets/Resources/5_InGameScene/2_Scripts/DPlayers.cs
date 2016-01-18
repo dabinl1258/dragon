@@ -268,6 +268,7 @@ public class DPlayers : MonoBehaviour
     {
         if (flyState) {
             _enemy.SendMessage("HitWithPlayer");
+            //_enemy.GetComponent<DEnemyObj>().HitWithPlayer();
         }
     }
     #endregion
