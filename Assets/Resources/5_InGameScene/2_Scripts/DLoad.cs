@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System;
 
 public class DLoad : MonoBehaviour {
+
+    public static DLoad Instance;
     private Transform playerPosition = null;
    
     [SerializeField]
@@ -33,10 +35,11 @@ public class DLoad : MonoBehaviour {
     bool create_able; // 생성 가능한지 ?
 	// Use this for initialization
 	void Start () {
+        Instance = this;
         monsterPool =  new DObjectPool[monster.Length];
         for (int i = 0; i < monster.Length; i++ )
         {
-            monsterPool[i] = new DObjectPool(monster[i]);
+            monsterPool[i] = new DObjectPool(monster[i],i);
         }
         
             create_able = NextIndex();
@@ -80,5 +83,14 @@ public class DLoad : MonoBehaviour {
             
         }
         
+    }
+
+    public void CallHitWithPlayer(string _name)
+    {
+        char[] split = { ',', ','};
+        string[] splited = _name.Split(split);
+        int array = int.Parse( splited[1]);
+        int index = int.Parse(splited[2]);
+        monsterPool[array].poolCash[index].HitWithPlayer();
     }
 }

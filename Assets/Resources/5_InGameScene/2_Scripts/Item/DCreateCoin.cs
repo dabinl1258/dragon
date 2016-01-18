@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 public class DCreateCoin : MonoBehaviour {
     public static DCreateCoin instance = null;
     public DCoin []coinArray;
@@ -10,7 +11,7 @@ public class DCreateCoin : MonoBehaviour {
         objectPool = new DObjectPool[coinArray.Length];
         for (int i = 0; i < coinArray.Length; i++)
         {
-            objectPool[i] = new DObjectPool(coinArray[i].gameObject);
+            objectPool[i] = new DObjectPool(coinArray[i].gameObject,0);
         }
         for (int i = 0; i < coinArray.Length; i++)
         {

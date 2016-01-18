@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DEnemyObj : MonoBehaviour {
+public class DEnemyObj : DHitWithPlayer {
     // 최상위 오브젝트
     #region Variable
     public float restEnergy = 10.0f;

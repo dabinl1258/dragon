@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
 public class DObjectPool
 {
     GameObject type;
     List<GameObject> pool = new List<GameObject>();
-
-    public DObjectPool(GameObject _type)
+    public List<DHitWithPlayer> poolCash = new List<DHitWithPlayer>();
+    private int arrayIndex = 0;
+    public DObjectPool(GameObject _type , int _arrayIndex)
     {
+        arrayIndex = arrayIndex;
         type = _type;
         for (int i = 0; i < 5; i++)
         {
-            GameObject temp = MonoBehaviour.Instantiate(type) as GameObject;
-            pool.Add(temp);
-            temp.SetActive(false);
+            
+            Add().SetActive(false);
         }
     }
 
@@ -32,9 +32,16 @@ public class DObjectPool
             }
 
         }
+
+        return Add();
+    }
+
+    GameObject Add()
+    {
         GameObject temp = MonoBehaviour.Instantiate(type) as GameObject;
-        Debug.Log("생성 ");
+        temp.name += "," + arrayIndex.ToString() + "," + pool.Count.ToString();
         pool.Add(temp);
+        poolCash.Add(temp.GetComponent<DHitWithPlayer>());
         return temp;
     }
 
@@ -42,4 +49,5 @@ public class DObjectPool
     {
         type = _type;
     }
+
 }

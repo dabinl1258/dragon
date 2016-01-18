@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DItem : MonoBehaviour {
+public class DItem : DHitWithPlayer
+{
 
     // 최상위 오브젝트
     #region Variable
