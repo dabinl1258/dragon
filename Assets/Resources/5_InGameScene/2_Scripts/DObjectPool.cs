@@ -9,7 +9,7 @@ public class DObjectPool
     public DObjectPool(GameObject _type)
     {
         type = _type;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 5; i++)
         {
             GameObject temp = MonoBehaviour.Instantiate(type) as GameObject;
             pool.Add(temp);

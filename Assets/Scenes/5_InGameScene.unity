@@ -222,7 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff608969f8a77643acf3b7e3f7fbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosition: {fileID: 0}
   compensate: 10
   monster:
   - {fileID: 100024, guid: 28122a54bea2bcb40ab610c3634e11c2, type: 2}

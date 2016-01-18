@@ -14,7 +14,7 @@ public class DCreateCoin : MonoBehaviour {
         }
         for (int i = 0; i < coinArray.Length; i++)
         {
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < 10; j++)
             {
                 objectPool[i].GetAble().SetActive(false);
             }
