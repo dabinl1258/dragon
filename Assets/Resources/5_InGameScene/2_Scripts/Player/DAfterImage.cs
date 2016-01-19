@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+private class DAfterImagePool
+{
+    public SpriteRenderer spriteRenderer;
+    RenderTexture rTex;
+    
+}
 public class DAfterImage : MonoBehaviour {
     RenderTexture rTex;
     public GameObject spritePre = null;
@@ -23,6 +28,7 @@ public class DAfterImage : MonoBehaviour {
     private Color endColor; 
     #endregion 
     List<SpriteRenderer> pool = new List<SpriteRenderer>();
+    
 
 
     SpriteRenderer Request()
