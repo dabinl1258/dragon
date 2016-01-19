@@ -15,6 +15,6 @@ public class DHitWithPlayer : MonoBehaviour {
 
     public virtual void HitWithPlayer()
     {
-
+         
     }
 }

@@ -29,6 +29,7 @@ public class DObjectPool
                 Debug.Log("재활용");
                 pool[i].SetActive(true);
                 return pool[i];
+                
             }
 
         }
