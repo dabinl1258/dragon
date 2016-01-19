@@ -1159,6 +1159,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400152}
+  m_Layer: 0
+  m_Name: playerEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -1953,6 +1968,7 @@ Transform:
   - {fileID: 400148}
   - {fileID: 400150}
   - {fileID: 400140}
+  - {fileID: 400152}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &400122
@@ -2146,6 +2162,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400120}
   m_RootOrder: 4
+--- !u!4 &400152
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .468280435, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400120}
+  m_RootOrder: 6
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -2381,8 +2409,6 @@ MonoBehaviour:
   dragonObj: {fileID: 100028}
   animator: {fileID: 9500000}
   deadScene: 1_MainMenuScene
-  audioListener: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: c7a53644abbe11042833433370ef0ab2, type: 3}
   particle: {fileID: 100000, guid: 25603d15f13e5ac458bbcf8dcd86ec66, type: 2}
   isMagnet: 1
   energy: 100
@@ -2418,12 +2444,14 @@ MonoBehaviour:
   bornPos: {fileID: 400120}
   x: 300
   y: 300
-  timerMax: .00100000005
+  timerMax: 9.99999975e-05
   offset: {x: 1, y: 1, z: 0}
-  startColor: {r: 1, g: 1, b: 1, a: .65882355}
-  dColor: {r: 0, g: 0, b: 0, a: .192156866}
+  startColor: {r: 1, g: 1, b: 1, a: .337254912}
+  dColor: {r: 0, g: 0, b: 0, a: .384313732}
   distance: 3
-  lineRenderPos: {fileID: 400052}
+  lineRenderPos: {fileID: 400152}
+  endColorD: {r: 0, g: 0, b: 0, a: .117647059}
+  endColorDefalut: {r: 1, g: .220588207, b: .220588207, a: 1}
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -2452,10 +2480,10 @@ LineRenderer:
     endWidth: 2.29999995
     m_StartColor:
       serializedVersion: 2
-      rgba: 9043825
+      rgba: 16777215
     m_EndColor:
       serializedVersion: 2
-      rgba: 4278190192
+      rgba: 4278255432
   m_UseWorldSpace: 1
 --- !u!137 &13700000
 SkinnedMeshRenderer:

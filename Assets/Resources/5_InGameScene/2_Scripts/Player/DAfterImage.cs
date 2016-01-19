@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-private class DAfterImagePool
-{
-    public SpriteRenderer spriteRenderer;
-    RenderTexture rTex;
-    
-}
+
 public class DAfterImage : MonoBehaviour {
     RenderTexture rTex;
     public GameObject spritePre = null;
@@ -22,35 +17,42 @@ public class DAfterImage : MonoBehaviour {
     public float distance  = 0.5f;// 잔상 사이의 최소 거리
     Vector3 beforePos; // 이전에 잔상이 출현한 포지션
 
+    
+    List<SpriteRenderer> spritePool = new List<SpriteRenderer>();
+    List<Texture2D> text2dPool = new List<Texture2D>();
+
     #region  Line Render
     private LineRenderer lineRender;
     public Transform lineRenderPos;
-    private Color endColor; 
+    private Color endColor;
+    public Color endColorD;
+    public Color endColorDefalut;
+    private bool notSetPosition = true ;
     #endregion 
-    List<SpriteRenderer> pool = new List<SpriteRenderer>();
-    
-
-
-    SpriteRenderer Request()
+    int  Request()
     {
-        for(int i =0 ; i< pool.Count ; i++)
+        for (int i = 0; i < spritePool.Count; i++)
         {
-            if(pool[i].color.a <= 0.0f)
+            if (spritePool[i].color.a <= 0.0f)
             {
-                pool[i].color = startColor;
-                return pool[i];
+                spritePool[i].color = startColor;
+                return i;
             }
         }
         SpriteRenderer temp = (Instantiate(spritePre) as GameObject).GetComponent<SpriteRenderer>() ;
         temp.color = startColor;
-        pool.Add(temp);
-        return temp;
+        spritePool.Add(temp);
+        texture2d = new Texture2D(x, y, TextureFormat.ARGB32, false);
+        text2dPool.Add(texture2d);
+        return spritePool.Count -1 ;
     }
 
     void Add()
     {
-        
-        
+
+        int index = Request();
+        SpriteRenderer temp = spritePool[ index];
+        texture2d = text2dPool[index];
         camera.targetTexture = rTex;
         camera.Render();
         RenderTexture.active = rTex;
@@ -60,7 +62,7 @@ public class DAfterImage : MonoBehaviour {
         RenderTexture.active = null;
         Sprite spr = Sprite.Create(texture2d, new Rect(0, 0, x, y), Vector2.one);
 
-        SpriteRenderer temp = Request();
+        
         temp.sprite = Sprite.Create(texture2d, new Rect(0, 0, x, y), Vector2.one);
         temp.transform.position = bornPos.position + offset;
         beforePos = temp.transform.position;
@@ -80,8 +82,9 @@ public class DAfterImage : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rTex = new RenderTexture(x, y, 10);
-        texture2d = new Texture2D(x, y, TextureFormat.ARGB32, false);
         lineRender = GetComponent<LineRenderer>();
+        
+
         transform.parent = transform.parent.parent;
         
 	}
@@ -92,18 +95,30 @@ public class DAfterImage : MonoBehaviour {
 	void Update () {
         transform.position = new Vector3(bornPos.position.x, bornPos.position.y, transform.position.z);
         Timer();
-        for (int i = 0; i < pool.Count; i++)
+        for (int i = 0; i < spritePool.Count; i++)
         {
-            pool[i].color -= dColor * Time.deltaTime;
+            spritePool[i].color -= dColor * Time.deltaTime;
         }
-        lineRender.SetPosition(1, lineRenderPos.position);
-        endColor -= dColor * Time.deltaTime;
+        
+        endColor -= endColorD * Time.deltaTime;
+        
+        if(notSetPosition)
+        {
+            endColor -= endColorD * Time.deltaTime * 5.0f;
+        }else 
+            lineRender.SetPosition(1, lineRenderPos.position);
         lineRender.SetColors(Color.clear, endColor);
 	}
 
     public void Line(Vector3 _pos)
     {
-        endColor = Color.white/2;
+        endColor = endColorDefalut;
         lineRender.SetPosition(0, _pos);
+        notSetPosition = false;
+    }
+
+    public void NotSetPos()
+    {
+        notSetPosition = true;
     }
 }

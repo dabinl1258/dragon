@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: monster_2
-  m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: c3a6ecac8bd1cc04083304b18a944e51, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 4ced8f2ba9bb34d49914f842f6e337f9, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -36,7 +36,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .903448343, g: 1, b: 0, a: 1}
+        second: {r: .218935624, g: .0127595272, b: .433823526, a: .227450982}
       data:
         first:
           name: _OutlineColor

@@ -202,7 +202,7 @@ public class DPlayers : MonoBehaviour
         {
             flyState = false;
 
-            
+            afterImage.NotSetPos();
             DInGameScore.instance.UpScore(combo * combo * 100);
             combo = 0;
             transform.localEulerAngles = Vector3.zero;
