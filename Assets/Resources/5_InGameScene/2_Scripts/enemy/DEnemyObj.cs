@@ -42,7 +42,7 @@ public class DEnemyObj : DHitWithPlayer {
         life = true;
     }
 
-    virtual public void HitWithPlayer()
+    public override void HitWithPlayer()
     {
         if (!life)
             return;

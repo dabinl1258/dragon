@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DPlayers : MonoBehaviour
 {
+    
 
     #region Physics Variable
 
@@ -27,8 +28,6 @@ public class DPlayers : MonoBehaviour
     public static DPlayers instance = null;
 
 
-    public GameObject audioListener= null;
-    public AudioClip audioClip = null;
     public GameObject particle = null;
 
     public bool isMagnet = true;
@@ -46,6 +45,7 @@ public class DPlayers : MonoBehaviour
 
     private bool hyperAble = false;
     public GameObject hyperEffect = null;
+    public DAfterImage afterImage = null;
     #endregion
 
     #region HyperValiable
@@ -60,7 +60,6 @@ public class DPlayers : MonoBehaviour
     {
         hyperEffect.SetActive(hyperAble);
         cam = GameObject.Find("3DGameCamera").camera;
-        audioListener = GameObject.Find("audio");
         Time.timeScale = 1.0f;
         instance = this;
         screenCal = new Vector3(Screen.width / 2, Screen.height / 2);
@@ -202,6 +201,8 @@ public class DPlayers : MonoBehaviour
         if (Vector3.Distance(transform.position, pos) < stopGravityConst)
         {
             flyState = false;
+
+            
             DInGameScore.instance.UpScore(combo * combo * 100);
             combo = 0;
             transform.localEulerAngles = Vector3.zero;
@@ -232,10 +233,10 @@ public class DPlayers : MonoBehaviour
         //    pos = transform.position;
         //    return;
         //}
-        
+
+        afterImage.Line(transform.position);
         flyState = true;
         DoAnimation("Attack");
-        audioListener.SendMessage("PlayAudio", audioClip);
         gameObject.SetActive(false);
         gameObject.SetActive(true);
     }
@@ -259,13 +260,14 @@ public class DPlayers : MonoBehaviour
 
     void TriggerWithItem(GameObject _item)
     {
-        _item.SendMessage("HitWithPlayer");
+        //_item.SendMessage("HitWithPlayer");
     }
 
     void TriggerWithEnemy(GameObject _enemy)
     {
         if (flyState) {
-            _enemy.SendMessage("HitWithPlayer");
+            DLoad.Instance.CallHitWithPlayer(_enemy.name);
+            //_enemy.SendMessage("HitWithPlayer");
             //_enemy.GetComponent<DEnemyObj>().HitWithPlayer();
         }
     }
