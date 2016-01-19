@@ -406,13 +406,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 570
-  mHeight: 326
-  mDepth: 0
+  mWidth: 1280
+  mHeight: 720
+  mDepth: -3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.74846625
+  aspectRatio: 1.77777779
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -423,8 +423,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 1d12e0ea40f38be42a63e6ca36e3c350, type: 2}
-  mSpriteName: Lobby_Bg
+  mAtlas: {fileID: 11400000, guid: c8fc344eab1def043985ff96076c955e, type: 2}
+  mSpriteName: background
   mFillCenter: 1
 --- !u!114 &877974702
 MonoBehaviour:
@@ -670,24 +670,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 288b254f3a813d647bbfdd9d3ecbc2f3, type: 2}
       propertyPath: mWidth
-      value: 570
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 288b254f3a813d647bbfdd9d3ecbc2f3, type: 2}
       propertyPath: aspectRatio
-      value: 1.74846625
+      value: 1.77777779
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 288b254f3a813d647bbfdd9d3ecbc2f3, type: 2}
       propertyPath: mHeight
-      value: 326
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 288b254f3a813d647bbfdd9d3ecbc2f3, type: 2}
       propertyPath: mAtlas
       value: 
-      objectReference: {fileID: 11400000, guid: 1d12e0ea40f38be42a63e6ca36e3c350,
+      objectReference: {fileID: 11400000, guid: c8fc344eab1def043985ff96076c955e,
         type: 2}
     - target: {fileID: 11400000, guid: 288b254f3a813d647bbfdd9d3ecbc2f3, type: 2}
       propertyPath: mSpriteName
-      value: Lobby_Bg
+      value: background
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 288b254f3a813d647bbfdd9d3ecbc2f3, type: 2}
@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 1941271576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00337268133, y: .00337268133, z: .00337268133}
+  m_LocalScale: {x: .00277777785, y: .00277777785, z: .00277777785}
   m_Children:
   - {fileID: 162947442}
   - {fileID: 877974700}
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5ecb5660b11414fb042fb826e03b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalingStyle: 0
+  scalingStyle: 1
   manualHeight: 720
   minimumHeight: 320
   maximumHeight: 1536
