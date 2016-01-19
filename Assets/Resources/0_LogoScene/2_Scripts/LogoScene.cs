@@ -9,7 +9,7 @@ public class LogoScene : MonoBehaviour {
 	}
     void OnClick()
     {
-        Application.LoadLevelAsync("1_MainMenuScene");
+        Application.LoadLevelAsync(1);
         Debug.Log("GO_MAIN");
     }
 }
